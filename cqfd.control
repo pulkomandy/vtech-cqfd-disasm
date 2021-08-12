@@ -1,0 +1,427 @@
+finterbank.rom
+tff
+
+c2000
+
+l0005 mistery_reg_5
+l001e mistery_reg_1e
+
+l0029 rombank_select_4000
+l002a bank_select_8000
+l002b rambank_select_d000
+l002d rombank_select_c000
+
+l0044 mistery_reg_44
+
+l004e idx8
+
+l0051 mistery_reg_51
+l0052 mistery_reg_52
+l0054 mistery_reg_54
+l0055 mistery_reg_55
+l0058 mistery_reg_58
+
+l0072 mistery_var_72_hi
+l0073 mistery_var_72_low
+l0074 mistery_bitfield_74
+
+
+
+l01e9 bank2_savea
+l023a idx16_hi_save_bank1
+l023b idx16_lo_save_bank1
+l0240 some_array_indexed_by_0282
+l0270 idx16_savehi
+l0271 idx16_savelo
+l0272 p2xxx_interrupt_status_save
+l0278 r4e_save
+l0282 index_for_0240
+l0283 p3xxx_interrupt_status_save
+l0284 r72_save2_hi
+l0285 r72_save2_lo
+l0286 r72_save_hi
+l0287 r72_save_lo
+
+n2000
+Start of resident ROM area
+This area is always mapped at address 2000, and contains generic code,
+including code that allows to switch ROM banks and jump between them.
+
+At least part of the addresses before 2000 are RAM and hardware
+registers. So the part of the ROM before here is only accessible
+when mapped at 4000 as bank 0.
+.
+
+b20b9
+c20c0
+
+b2179
+c2180
+
+b2239
+c2240
+
+b22f9
+c2300
+
+b23b9
+c23c0
+
+b247f
+c2480
+
+b253f
+c2540
+
+b25f9
+c2600
+
+b26b9
+c26c0
+
+n27d0
+
+Jumptable for interbank routines.
+These are used often or implement quite low level things to make the CPU usable.
+They are always mapped in and can be easily called this way.
+.
+l283c goto_3883
+l2845 goto_28a5
+l2848 goto_2c7c
+l284b goto_2a05
+l2869 do_call_routine15_bank0_with_265eq0_and_264eq6
+l286f goto_3ab6
+l2872 goto_3ac2
+l288d goto_38e3
+l2896 setbit7_7f_and_call_2845
+l289e clear_7f_and_call_2845
+
+p28a5
+l28c0 p28a5_restore_interrupts_and_continue
+l28c3 p28a5_interrupts_are_clear
+l28d6 p28a5_continue
+l28ef
+l28f2
+l291a
+l2934
+l294e
+l29ec
+
+p29f7 call_routine15_bank0_with_265eq0_and_264eq6
+
+p2a05
+l2a0f p2a05_interrupts_are_off
+l2a14 p2a05_endif_interrupts
+l2a2a r78_is_zero
+l2b6b r78_is_not_0
+l2b86 p2a05_return_0
+l2b8d r78_is_not_1
+l2ba5 p2a05_return_0_v1
+l2bac r78_is_not_2
+l2bc0 p2a05_return_0_v2
+l2beb r78_is_not_1e
+
+l2c0d x_is_not_47
+l2c1a x_is_not_48
+l2c27 x_is_not_49
+l2c34 x_is_not_4a
+
+p2c7c
+l2c86 p2c7c_interrupts_are_off
+l2ca1 r78_is_0
+l2ca8 r267_higher_than_46
+l2d23 r267_is_not_47
+l2d9e r267_is_not_48
+l2e19 r267_is_not_49
+l2e94 r267_is_not_4a
+l2f0b r267_lower_than_46
+l2f10 r78_is_not_0
+l2f19 r78_is_not_1
+l2f22 r78_is_not_2
+l2f33 r267_more_than_3f
+l2f57 r267_more_than_3c_or_r78_is_3
+l2f78 r267_less_than_31
+
+p2f92
+p300d
+b30c6
+
+p31e2 pusha
+l31f2 pusha_int_already_disabled
+p31fe popa
+l320e popa_int_already_disabled
+p321a pushx
+l322c pushx_int_already_disabled
+p323a popx
+l324b popx_int_already_disabled
+p3258 stack_reset
+l3261 stack_reset_int_already_disabled
+p3266 inc_u16_at_x
+l326b
+
+p326c inc_s24_at_x_maybe
+l3275 p326c_x_is_positive_inc_lsb
+l3279 p326c_lsb_overflow_inc_msb
+l3280 p326c_msb_overflow
+l3288 p326c_x_is_negative
+l3290 p326c_lsb_overflow_neg
+l329f p326c_x_is_c0
+l32ad p326c_return
+
+p32b1 lda_x4f
+p32b7 lda_x4f_inc
+p32bd sta_x4f
+p32c3 sta_x4f_inc
+p32c9 call_334b_with_x4e
+p32cf call_33f5_with_x4e
+p32d5 call_33fc_with_x4e
+p32db call_34ac_with_x4e
+
+k32e1 Load A from 16 bit address pointed by X
+p32e1 lda_x16
+l32f7 p32e1_interrupts_are_disabled
+
+k3309 Load A from 16 bit address pointed by X and increment address
+p3309 lda_x16_increment
+
+k3310 Store A to 16 bit address pointed by X
+p3310 sta_x16
+l332c p3310_interrupts_are_disabled
+
+k3344 Store A to 16 bit address pointed by X and increment address
+p3344 sta_x16_increment
+
+p334b
+l33a2 p334b_interrupts_are_disabled
+
+p33f5
+
+p33fc
+l3456 p33fc_interrupts_are_disabled
+
+p34b3 delayloop_ax
+p34bb delayloop_aax
+p34ca delayloop_ax_with_timeout_bit5_reg44
+p34d9 delayloop_aax_with_timeout
+
+n34ef
+Call a subroutine in another bank
+      Input:
+      $63 contains the bank number
+      $64-$65 contains the routine address
+.
+p34ef far_call
+l3514 p34ef_interrupts_are_disabled
+
+p3535 io_wait_something
+p3553
+l356e p3553_interrupts_are_disabled
+
+n3585
+Detect memory banks 20 (cartridge?) and 40 (RAM?)
+Map them at 8000 and check for known patterns or writable space.
+Return cartridge subtype in X
+.
+p3585 detect_banks
+k3585 Save currently selected bank
+k358a Select bank 20
+k358f Check for pattern 55AA at address 8100
+l35a9 process_type32_bank
+l35ea not_type32
+l35c5 not_subtype02
+l35cc not_subtype04
+l35d3 not_subtype05
+l35da not_subtype06
+l35e1 not_subtype07
+l35ee process_type31_bank
+l360a not_84
+l3612 not_04
+l36ea not_type323132
+l361a no_pattern_match_8100
+k3632 Detected 55AA11 at 8000 - Return 9
+l3636 no_pattern_match_8000
+k3636 Map bank 40 and check for RAM
+l3659 ramcheck_success
+k365f Detected RAM - Return 8
+l3663 ramcheck_error
+k3666 Detected nothing - Return 0
+l3669 detect_banks_return
+
+p3671
+p367c
+
+p3759 isupper
+l3771 p3759_want_bank0
+l3787 lower_than_A
+l3789 p3759_return
+l3791 lower_than_Z
+
+p3793 islower
+p37cd toupper
+p380e tolower
+p384f call_3677_then_do_same_as_3883
+
+p3883
+l388f want_bank0
+l389d p3883_interrupts_are_disabled
+l38a3 p3883_restore_banks
+l38b0 r4c_is_not_clear
+
+p38b4 clear_r4d_and_r4c
+l38bd p38b4_interrupts_are_disabled
+
+p38c2
+p38cc
+
+p38db get_not_51_bit4
+l38e1 bit4_is_set
+
+p38e3
+p38f1
+l3903 p43_loop_enter
+l3905 p43_loop_repeat
+l3924 p43_interrupts_are_disabled
+l3935 p43_return
+
+p3938 do_393f_then_38e3
+p393f
+p3958
+p3a3f
+p3a53
+b3a7a
+p3aaa
+p3ab6
+p3ac2 clear_bit7_of_74_and_call_3b9d
+l3acc p3ac2_bit7_of_74_is_already_clear
+
+p3acd save_r72_16
+l3adc p3acd_interrupts_are_clear
+
+p3ae7
+l3b20 p3ae7_interrupts_are_clear
+
+p3b50
+
+p3b58
+l3b62 p3b58_interrupts_are_disabled
+l3b67 p3b58_interrupts_endif
+
+p3b9d
+l3ba7 p3b9d_interrupts_are_clear
+l3bac p3b9d_continue
+l3bb4 p3b9d_loop
+
+p3be4
+
+p3cb0 mul_r72_by_5_mod3_something_store_in_281
+l3cd4 p3cb0_return
+
+p3cd5 rti_3cd5
+p3cd6
+l3de6 rti_3de6
+p3de7
+l3dfa rti_3dfa
+
+p3dfb maybe_reset_vector
+l3e6b ram_clear_loop_0000
+l3e72 preserve_address_52
+l3e76 ram_clear_loop_0100
+l3e7c ram_clear_loop_0200
+l3e89 ram_clear_loop_022b
+l3e8f ram_clear_loop_0800
+l3e96 ram_clear_loop_08f0
+
+l3f19 not_55aa
+l3f1e yes_55aa
+l3f42
+
+b3f49
+b3fc0 rom_header
+c3fd8 rom_mainbank_vectors
+s3ff0 copyright_vtech
+e4000
+
+n4000
+Start of bank 1.
+.
+p4000
+
+b404e
+
+p40c0
+p43e2
+p4438
+p4472
+
+b4569
+
+p4a00 bank1_routine1
+p4a2e bank1_routine2
+p4a5c bank1_routine3
+p4a8a bank1_routine4
+p4ab8 bank1_routine5
+p4ae6 bank1_routine6
+p4b14 bank1_routine7
+p4b42 bank1_routine8
+p4b70 bank1_routine9
+p4b9e bank1_routinea
+l4cb5 b1ra_loop
+p4cc0
+p4d28 bank1_routine16
+p4de6
+p4eca bank1_routine18
+p5074 bank1_routineb
+p512d bank1_routinec
+p5265 bank1_routined
+p5269 bank1_routinee
+p526b bank1_routinef
+p52e4 bank1_routine10
+p53f2 bank1_routine11
+p53fc bank1_routine12
+p548e bank1_routine13
+p5520 bank1_routine15
+p5574 bank1_routine14
+p54c3
+p55a0 bank1_routine0
+p588c
+p5b55 bank1_routine17
+l5b88 r52_is_c0
+l5b93 r52_is_40
+l5b9c bank1_routine17_tail
+
+b5ba3
+l5c52
+l5cef
+
+c8000
+
+p8042 bank2_routine9
+p8049 bank2_routine4
+p8059 bank2_routine0
+
+b80a7
+
+p9ddc bank2_routine1
+pb9c3 bank2_routine3
+paff0 bank2_routine5
+pb271 bank2_routine6
+pb9b8 bank2_routine7
+p9ca3 bank2_routine8
+pad12 bank2_routinea
+pacc2 bank2_routineb
+pad62 bank2_routinec
+pacd2 bank2_routined
+pad72 bank2_routinee
+pace2 bank2_routinef
+pad82 bank2_routine10
+pacf2 bank2_routine11
+pad92 bank2_routine12
+
+baf63
+sba31
+bbe03
+
+pc000
+bf781
+
+iinterbank.control

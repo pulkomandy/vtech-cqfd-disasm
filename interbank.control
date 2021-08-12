@@ -1,0 +1,113 @@
+n0047
+Keyboard flags are stored here.
+Bit 0 switches between QWERTY and AZERTY
+Bit 1 ???
+Bit 2 ???
+Bits 3 and 4 ??? maybe capslock. They can be 10 or 01, no other values?
+Bit 5 appears to be unused so far.
+Bit 6 ???
+Bit 7 ???
+.
+l0047 keyboard_config_bits
+l004d save_x_kbd
+l004f idx16_hi
+l0050 idx16_lo
+
+n005f
+A 4-byte zone in RAM where several routines will poke two instructions
+and then execute them, to implement missing features of the CPU such
+as indirect register load and stores.
+.
+l005f scratch_area
+
+l0228 save_x
+
+k0235 Memory used for passing arguments to functions
+l0235 arg_4
+l0236 arg_3
+l0237 arg_2
+l0238 arg_1
+l0239 arg_0
+
+n0069
+Store a pointer to the next area (??? to 90) which is used as a stack
+to save the A and X registers. In 6805 there are no instructions to
+push or pop these registers on the call stack, which has a very
+limited size anyway.
+.
+l0069 reg_stackptr
+l0090 reg_stackbase
+
+l2000 call_routine0_bank0
+l2005 call_routine1_bank0
+l2019 b0r5_clear_bits_4_and_5_of_r48
+l2028 call_routine8_bank0
+l2032 b0ra_test_r028f_nonzero
+l203c call_routinec_bank0
+l2041 call_routined_bank0
+l2046 call_routinee_bank0
+l2055 call_routine11_bank0
+l205f call_routine13_bank0
+l2069 call_routine15_bank0
+l209d call_bank0_routine
+
+l20c0 call_routine0_bank1
+l20d4 call_routine4_bank1
+l20e3 call_routine7_bank1
+l20e8 call_routine8_bank1
+l20ed call_routine9_bank1
+l2129 call_routine15_bank1
+l2133 call_routine17_bank1
+l2138 call_routine18_bank1
+l215d call_bank1_routine
+
+l2180 call_routine0_bank2
+l21ad call_routine9_bank2
+l221d call_bank2_routine
+
+l2240 call_routine0_bank3
+l22dd call_bank3_routine
+l2300 call_routine0_bank4
+l239d call_bank4_routine
+l23c0 call_routine0_bank5
+l245d call_bank5_routine
+l2480 call_routine0_bank6
+l24b2 call_routinea_bank6
+l251d call_bank6_routine
+l2540 call_routine0_bank20
+l25dd call_bank20_routine
+
+l2600 call_routine0_bank21
+l269d call_bank21_routine
+l26c0 call_routine0_bank63
+l27ad call_bank63_routine
+
+l27d0 STACK_RESET
+l27d3 PUSHA
+l27d6 POPA
+l27d9 PUSHX
+l27dc POPX
+l27df FAR_CALL
+l27e2 LDA_IDX16
+k27e2 Load A with value pointed by 16bit pointer at 4F
+l27e5 STA_IDX16
+l27e8 LDA_IDX16_INC
+l27eb STA_IDX16_INC
+
+l27fa LDA_X16
+k27fa Load A with value pointed by 16bit pointer at X
+l27fd STA_X16
+l2800 LDA_X16_INC
+l2803 STA_X16_INC
+
+l2812 INC16_AT_X
+
+l2818 DELAYLOOP_AX
+l281B DELAYLOOP_AAX
+l281e DELAYLOOP_AX_TIMEOUT
+l2821 DELAYLOOP_AAX_TIMEOUT
+l282a INIT_MEMORYBANKS
+l2830 ISUPPER
+l2833 ISLOWER
+l2836 TOUPPER
+l2839 TOLOWER

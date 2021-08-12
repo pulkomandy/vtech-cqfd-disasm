@@ -1,0 +1,135 @@
+fcqfd.rom
+tff
+c4000
+iinterbank.control
+
+n4000
+Bank 0 jump table
+This will be executed while being mapped at address 4000.
+Take this into account when trying to interpret the addresses.
+.
+
+b4045
+
+b4080 uppercase_accents
+b40a0 lowercase_accents
+p40c0 routine2_and_3
+p43e2 routine4
+p4438 routine0
+p4472 routine1
+b449b
+b459b
+b469b
+b479b
+p48a6 clear_bits_4_and_5_of_r48
+p48ab routine6
+p48cf routine7
+p48f3 routine10
+p48fa routine11
+p4901 routine8
+p4927 routine9
+p4977
+p4982
+p49e5 test_r028f_nonzero
+p49ed routineb
+p4b92
+p4bd1 call_routine11(2f,00)
+p4bdf call_routine11(4f,00)
+p4bed call_routine11(2e,00)
+p4bfb
+p4c17 routinec
+p4cc0 routine16
+p4de6 routinef_and_12
+l4e3e lda028e_is_not_1
+l4e7d lda028e_is_not_5
+l4ebc lda028e_is_not_8
+l4efb lda028e_is_not_9
+l4f3a lda028e_is_not_10
+l4f79 lda028e_is_not_12
+l4fb8 lda028e_is_not_14
+l4ff7 lda028e_is_not_17
+l5036 lda028e_is_not_2
+l5075 lda028e_is_not_4
+l50b4 lda028e_is_not_b
+l50f3 lda028e_is_not_a
+l5132 lda028e_is_not_e
+l5171 lda028e_is_not_16
+l51b0 lda028e_is_not_15
+l51ef lda028e_is_not_18
+l522e lda028e_is_not_3
+l526d lda028e_is_not_7
+l52ac lda028e_is_not_c
+l52eb lda028e_is_not_f
+l532a lda028e_is_not_11
+l532e lda028e_is_not_1b
+l536d lda028e_is_not_13
+l53ac lda028e_is_not_d
+l13eb lda028e_is_not_19
+l542a lda028e_is_not_6
+
+p54c3 routined
+l54ed r67_neq_r68
+l5516 r68_eq_0
+l5532 r68_eq_23_or_57
+l5536 r68_neq_0_and_r67_eq_23_or_57
+l554c r68_eq_20
+l5550 r68_neq_0_and_r67_eq_20
+l5561 some_loop
+l5590 convert_to_lowercase
+l5598 symbol_converted_shift_unshift
+l55c5 r67_eq_r68
+l55e7 clear_4c_and_return
+l55eb p4bfb_return
+b55ec
+
+b5615 keyboard_data
+b56ac
+b56c9 symbols_unshifted
+b56de symbols_shifted
+s56f3 vowels
+b56fe
+b5709
+b5714 qwerty_azerty
+b5736 azerty_qwerty
+
+p5758 test_if_vowel
+l5759 vowel_search_loop
+l5772 not_vowel
+l5778 is_vowel
+
+n577c
+Convert a character (passed in A) to transform the QWERTY keyboard
+mapping into AZERTY, or conversely (the VTech mapping is just swapping
+some keys)
+.
+p577c convert_qwerty_azerty
+
+n57a7
+Test if a character (passed in A) is a keyboard symbol.
+If it is, convert it to the other character on the key (shifted/unshifted), and set the carry.
+Otherwise, clear the carry and return the character unchanged.
+Also handles the special characters ED/EF, maybe caps lock on/off?
+.
+p57a7 is_keyboard_symbol_shift_unshift
+l57a8 search_in_symbols_unshifted
+l57c3 a_found_in_symbols_unshifted
+l57d1 not_special_ed
+l57d4 a_not_found_in_symbols_unshifted
+l57d8 search_in_symbols_shifted
+l57f3 a_not_found_in_symbols_shifted
+l57f9 a_found_in_symbols_shifted
+l58e07 not_special_ef
+l5808 p57a7_return
+
+p5809
+
+p5875
+
+p588c routinee
+p5b98 routine13
+b5bd0
+p5c52 routine15
+p5cef routine14
+b5d64
+
+e6000
