@@ -1,3 +1,45 @@
+l0000 reg_PORTA_DATA
+l0001 reg_PORTB_DATA
+l0002 reg_PORTC_DATA
+l0003 reg_PORTD_DATA
+l0004 reg_PORTA_DIR
+l0005 reg_PORTB_DIR
+l0006 reg_PORTC_DIR
+l0007 reg_EEPROM_CTRL
+l0008 reg_ADC_DATA
+l0009 reg_ADC_CTRL
+l000a reg_PWM_A
+l000b reg_PWM_B
+l000c reg_MISC
+l000d reg_SCI_BAUDRATE
+l000e reg_SCI_CTRL1
+l000f reg_SCI_CTRL2
+l0010 reg_SCI_STAT
+l0011 reg_SCI_DATA
+l0012 reg_TIMER_CTRL
+l0013 reg_TIMER_STAT
+l0014 reg_TIMER_CAPTURE1_HIGH
+l0015 reg_TIMER_CAPTURE1_LOW
+l0016 reg_TIMER_COMPARE1_HIGH
+l0017 reg_TIMER_COMPARE1_LOW
+l0018 reg_TIMER_COUNTER1_HIGH
+l0019 reg_TIMER_COUNTER1_LOW
+l001A reg_TIMER_COUNTER2_HIGH
+l001B reg_TIMER_COUNTER2_LOW
+l001C reg_TIMER_CAPTURE2_HIGH
+l001D reg_TIMER_CAPTURE2_LOW
+l001E reg_TIMER_COMPARE2_HIGH
+l001F reg_TIMER_COMPARE2_LOW
+
+l0029 rombank_select_4000
+l002a bank_select_8000
+l002b rambank_select_c000
+l002d rombank_select_c000
+
+l0043 mistery_var_43
+l0044 mistery_var_44
+l0046
+
 n0047
 Keyboard flags are stored here.
 Bit 0 switches between QWERTY and AZERTY
@@ -9,9 +51,18 @@ Bit 6 ???
 Bit 7 ???
 .
 l0047 keyboard_config_bits
+l004a hw_ptr_something_hi
+l004b hw_ptr_something_lo
 l004d save_x_kbd
+l004e idx8
 l004f idx16_hi
 l0050 idx16_lo
+
+l0051 mistery_var_51
+l0052 mistery_var_52
+l0054 mistery_var_54
+l0055 mistery_var_55
+l0058 mistery_var_58
 
 n005f
 A 4-byte zone in RAM where several routines will poke two instructions
@@ -20,6 +71,41 @@ as indirect register load and stores.
 .
 l005f scratch_area
 
+n0069
+Store a pointer to the next area (??? to 90) which is used as a stack
+to save the A and X registers. In 6805 there are no instructions to
+push or pop these registers on the call stack, which has a very
+limited size anyway.
+.
+l0069 var_stackptr
+
+l0072 mistery_var_72_hi
+l0073 mistery_var_72_low
+l0074 mistery_bitfield_74
+l007e interbank_unknown1_param1
+
+l0090 var_stackbase
+
+l00b4 stackptr_for_01ea
+
+l0102 someptr_hi
+l0103 someptr_lo
+
+l0113 math_arg1_hi
+l0114 math_arg1_lo
+l0115 math_arg2_hi
+l0116 math_arg2_lo
+l0117 math_arg3_hi
+l0118 math_arg3_lo
+l0119 math_carry
+l011a math_result1_hi
+l011b math_result1_lo
+l011c math_result2_hi
+l011d math_result2_lo
+
+l01e9 bank2_savea
+l01ea stack_indexed_by_00b4
+l022f save_bankselect_d000
 l0228 save_x
 
 k0235 Memory used for passing arguments to functions
@@ -28,15 +114,35 @@ l0236 arg_3
 l0237 arg_2
 l0238 arg_1
 l0239 arg_0
+l023a idx16_hi_save_bank1
+l023b idx16_lo_save_bank1
+l0240 some_array_indexed_by_0282
 
-n0069
-Store a pointer to the next area (??? to 90) which is used as a stack
-to save the A and X registers. In 6805 there are no instructions to
-push or pop these registers on the call stack, which has a very
-limited size anyway.
-.
-l0069 reg_stackptr
-l0090 reg_stackbase
+l0262 interbank_unknown1_param2_hi
+l0263 interbank_unknown1_param2_lo
+l0264 b0r15_arg1
+l0265 b0r15_arg0
+l0266 b0r15_var1
+l0267 b0r15_var2
+l0268 b0r15_var3
+l0269 b0r15_var4
+l026a b0r15_var5
+
+l026b b0r14_arg0
+l026c b0r14_arg1
+
+l0270 idx16_savehi
+l0271 idx16_savelo
+l0272 p2xxx_interrupt_status_save
+l0278 r4e_save
+l0280
+l0282 index_for_0240
+l0283 p3xxx_interrupt_status_save
+l0284 r72_save2_hi
+l0285 r72_save2_lo
+l0286 r72_save_hi
+l0287 r72_save_lo
+l028e bank1_routine1_arg
 
 l2000 call_routine0_bank0
 l2005 call_routine1_bank0
@@ -48,6 +154,7 @@ l2041 call_routined_bank0
 l2046 call_routinee_bank0
 l2055 call_routine11_bank0
 l205f call_routine13_bank0
+l2064 call_routine14_bank0
 l2069 call_routine15_bank0
 l209d call_bank0_routine
 
@@ -56,6 +163,8 @@ l20d4 call_routine4_bank1
 l20e3 call_routine7_bank1
 l20e8 call_routine8_bank1
 l20ed call_routine9_bank1
+l20f7 call_routineb_bank1
+l20fc call_routinec_bank1
 l2129 call_routine15_bank1
 l2133 call_routine17_bank1
 l2138 call_routine18_bank1
@@ -106,8 +215,23 @@ l2818 DELAYLOOP_AX
 l281B DELAYLOOP_AAX
 l281e DELAYLOOP_AX_TIMEOUT
 l2821 DELAYLOOP_AAX_TIMEOUT
+l2824 DELAYLOOP_TIMER
 l282a INIT_MEMORYBANKS
 l2830 ISUPPER
 l2833 ISLOWER
 l2836 TOUPPER
 l2839 TOLOWER
+l283c goto_3883
+l2845 goto_28a5
+l2848 goto_2c7c
+l284b goto_2a05
+l2863 interbank_unknown1
+l2866 interbank_unknown2
+l2869 do_call_routine15_bank0_with_265eq0_and_264eq6
+l286f goto_3ab6
+l2872 goto_3ac2
+l288d goto_38e3
+l2896 setbit7_7f_and_call_2845
+l289e clear_7f_and_call_2845
+
+l3537 io_wait_loop

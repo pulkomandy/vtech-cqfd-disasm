@@ -3,45 +3,6 @@ tff
 
 c2000
 
-l0005 mistery_reg_5
-l001e mistery_reg_1e
-
-l0029 rombank_select_4000
-l002a bank_select_8000
-l002b rambank_select_d000
-l002d rombank_select_c000
-
-l0044 mistery_reg_44
-
-l004e idx8
-
-l0051 mistery_reg_51
-l0052 mistery_reg_52
-l0054 mistery_reg_54
-l0055 mistery_reg_55
-l0058 mistery_reg_58
-
-l0072 mistery_var_72_hi
-l0073 mistery_var_72_low
-l0074 mistery_bitfield_74
-
-
-
-l01e9 bank2_savea
-l023a idx16_hi_save_bank1
-l023b idx16_lo_save_bank1
-l0240 some_array_indexed_by_0282
-l0270 idx16_savehi
-l0271 idx16_savelo
-l0272 p2xxx_interrupt_status_save
-l0278 r4e_save
-l0282 index_for_0240
-l0283 p3xxx_interrupt_status_save
-l0284 r72_save2_hi
-l0285 r72_save2_lo
-l0286 r72_save_hi
-l0287 r72_save_lo
-
 n2000
 Start of resident ROM area
 This area is always mapped at address 2000, and contains generic code,
@@ -85,16 +46,6 @@ Jumptable for interbank routines.
 These are used often or implement quite low level things to make the CPU usable.
 They are always mapped in and can be easily called this way.
 .
-l283c goto_3883
-l2845 goto_28a5
-l2848 goto_2c7c
-l284b goto_2a05
-l2869 do_call_routine15_bank0_with_265eq0_and_264eq6
-l286f goto_3ab6
-l2872 goto_3ac2
-l288d goto_38e3
-l2896 setbit7_7f_and_call_2845
-l289e clear_7f_and_call_2845
 
 p28a5
 l28c0 p28a5_restore_interrupts_and_continue
@@ -109,10 +60,16 @@ l29ec
 
 p29f7 call_routine15_bank0_with_265eq0_and_264eq6
 
-p2a05
+p2a05 reassemble_9xx_bits_in_7d
 l2a0f p2a05_interrupts_are_off
 l2a14 p2a05_endif_interrupts
 l2a2a r78_is_zero
+l2a31 process_46
+l2a71 process_48
+l2aaf process_49
+l2aed process_4a
+l2b2b process_4b_or_more
+l2b65
 l2b6b r78_is_not_0
 l2b86 p2a05_return_0
 l2b8d r78_is_not_1
@@ -126,25 +83,35 @@ l2c1a x_is_not_48
 l2c27 x_is_not_49
 l2c34 x_is_not_4a
 
-p2c7c
+p2c7c explode_7d_bits_in_9xx
 l2c86 p2c7c_interrupts_are_off
 l2ca1 r78_is_0
-l2ca8 r267_higher_than_46
-l2d23 r267_is_not_47
-l2d9e r267_is_not_48
-l2e19 r267_is_not_49
-l2e94 r267_is_not_4a
-l2f0b r267_lower_than_46
+l2ca8 r26f_higher_than_46
+l2d23 r26f_is_not_47
+l2d9e r26f_is_not_48
+l2e19 r26f_is_not_49
+l2e94 r26f_is_not_4a
+l2f0b r26f_lower_than_46
 l2f10 r78_is_not_0
 l2f19 r78_is_not_1
 l2f22 r78_is_not_2
-l2f33 r267_more_than_3f
-l2f57 r267_more_than_3c_or_r78_is_3
-l2f78 r267_less_than_31
+l2f25 r78_endif
+l2f33 r26f_more_than_3f
+l2f35 end_all_if
+l2f57 r26f_more_than_3c_or_r78_is_3
+l2f78 r26f_less_than_31
 
 p2f92
 p300d
+l3056
+l3060
+l306c
+l3095
+
 b30c6
+b310d
+b3154
+b319b
 
 p31e2 pusha
 l31f2 pusha_int_already_disabled
@@ -213,7 +180,7 @@ Call a subroutine in another bank
 p34ef far_call
 l3514 p34ef_interrupts_are_disabled
 
-p3535 io_wait_something
+p3535 wait_timer_counter1
 p3553
 l356e p3553_interrupts_are_disabled
 
@@ -305,6 +272,7 @@ p3b50
 p3b58
 l3b62 p3b58_interrupts_are_disabled
 l3b67 p3b58_interrupts_endif
+l3b6f p3b58_loop
 
 p3b9d
 l3ba7 p3b9d_interrupts_are_clear

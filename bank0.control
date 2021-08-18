@@ -126,10 +126,51 @@ p5809
 p5875
 
 p588c routinee
+l5907
+l590c
+l5923
+l592a
+l5933
+l5968
+l5977
+l59b4
+l59be
+l59e8
+l59f0
+l5a1e
+l5a42
+l5a66
+l5a6f
+l5a75
+p5a81
+p5b2d
+p5b3f
+p5b51
+p5b63
+n5b75
+Input: number in A
+Output: A/10 in X, A%10 in A
+.
+p5b75 divide_by_10
+p5b80
 p5b98 routine13
 b5bd0
+w5c1e p5b80_lookup
+
 p5c52 routine15
+l5c69
+l5c6c
+l5c7b
+l5ca1
+l5ce8
+
 p5cef routine14
+l5d01 r14_args_are_valid
+l5d1e
+l5d39 r14_loop1
+l5d4c r14_loop2
+l5d54
+l5d63 r14_return
 b5d64
 
 e6000

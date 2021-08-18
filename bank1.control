@@ -1,0 +1,97 @@
+fbank1.rom
+tff
+c4000
+iinterbank.control
+
+b404e
+
+p4a00 routine2
+p4a2e routine3
+p4a5c routine4
+p4a8a routine5
+p4ab8 routine6
+p4ae6 routine7
+p4b14 routine8
+p4b42 routine9
+p4b70 routineA
+p4b9e routineB
+p4d28 routine19
+p4d58 routine18
+p4eca routine1B
+p5074 routineC
+p512d routineD
+p524f
+p525a
+p5265 routineE_alias_routineB
+p5269 routineF_alias_routineB
+p526b routine10_alias_routineC
+
+p526f routine11
+l527e
+l5289
+l5294
+l529f
+
+p52a0
+p52b0
+p52c2
+p52d2
+
+p52e4 routine12
+l52f8
+l52f9
+l5307
+l5315
+
+p531f
+p5331
+p5343
+p5355
+p5367
+p5379
+p538b
+
+p53f2 routine13
+
+p53fc routine14
+l544b
+
+p548e routine15
+
+p5520 routine17
+l5547
+l5553
+l555e
+l556d
+
+p5574 routine16
+l5589 r16_loop1
+l5591 r16_loop2
+
+p55a0 routine1
+l55a7 r1_param_is_16_or_less_than_12
+l55ae
+l55b8
+l55d5
+l55db
+l55dc hw_ptr_is_clear
+l55f8
+l5606
+l5619
+l562a
+
+b5631
+
+p5b55 routine1A
+
+b5ba3
+v564a
+v564c
+v564e
+b5650
+b5680
+b5860
+b5aa9
+
+
+e7fff

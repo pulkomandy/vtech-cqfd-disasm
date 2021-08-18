@@ -1,0 +1,166 @@
+fbank2.rom
+tff
+c4000
+iinterbank.control
+
+p4042 routine9_call_b212_bank3_8000
+p4049 routine3
+p4059 routine0
+p5ca3 routine8
+p5ddc routine1
+
+b5f07
+b5f2f
+p5f35
+p5fc1
+
+p6138
+p61d5
+
+n630d
+Add two 16-bit numbers together
+.
+p630d add16
+
+n632a
+Subtract a 16bit number from another (signed?)
+.
+p632a sub16
+
+n6356
+Multiplies two 16-bit numbers to get a 32bit result (plus a 5th byte with carry).
+.
+p6356 mul16
+
+p63ab
+l63b0 loop
+
+p63f7
+l640c
+l640e p63f7_loop
+l643a
+l6453 p63f7_continue
+l6473 p63f7_return
+
+p6474
+p64da
+p65c1
+p6640
+p66c0
+p6787
+p67f1
+p681a
+p6b34
+p6b5f
+p6b77
+b6c35
+
+p6c82 push_aa_in_01ea
+p6c92 push_ab_in_01ea
+p6ca2 push_ac_in_01ea
+p6cb2 push_ad_in_01ea
+p6cc2 routineE_push_ae_in_01ea
+p6cd2 routine10_push_af_in_01ea
+p6ce2 routine12_push_b0_in_01ea
+p6cf2 routune14_push_b1_in_01ea
+p6d02 routineC_push_b2_in_01ea
+p6d12 routineA_push_b3_in_01ea
+p6d22 pop_aa_from_01ea
+p6d32 pop_ab_from_01ea
+p6d42 pop_ac_from_01ea
+p6d52 pop_ad_from_01ea
+p6d62 routineF_pop_ae_from_01ea
+p6d72 routine11_pop_af_from_01ea
+p6d82 routine13_pop_b0_from_01ea
+p6d92 routine15_pop_b1_from_01ea
+p6da2 routineD_pop_b2_from_01ea
+p6db2 routineB_pop_b3_from_01ea
+
+p6dc2
+l6dcc
+l6ddd
+l6de0
+
+p6de4
+p6e09
+
+p6f0d
+
+b6f63
+
+p6ff0 routine4
+p709d
+p70d5
+b70e2
+
+c70ed
+
+p7271 routine5
+p72a5 routine7
+
+b77c0
+
+p78f0 call_r8b0(?, ?, 6, 5, 14)
+p7903 call_r8b0(15, 0, 6, 5, 14)
+p790f call_r8b0(16, 0, 6, 5, 14)
+p791b call_r8b0(17, 0, 6, 5, 14)
+p7927 call_r11b0(5f00)
+l7931 do_call_r11b0
+p7935 call_r11b0(4d00)
+p7941 call_r11b0(5b00)
+p794d call_r11b0(5500)
+p7959 call_r11b0(4f00)
+p79b8 routine6
+p79c3 routine2_get_string_from_table
+
+v79d5 stringtable
+s7a31 select_app
+l7a47 select_level
+l7a5a score
+l7a76 player_a
+l7a81 player_b
+l7a8c continue
+l7a9a no_cartridge
+l7abf answer
+l7ad2 answer2
+l7ae5 fail1
+l7aef fail2
+l7af9 fail3
+l7b02 success1
+l7b0e success2
+l7b1a typeword
+l7b2b pickword
+l7b3f synoanto1
+l7b69 synoanto2
+l7b93 memorize
+l7bab typewords
+l7bc8 guessword
+l7bd7 typemissingword
+l7bed completesentence
+l7c01 pickanswer1
+l7c1a pickanswer2
+l7c33 findduplicatecard
+l7c52 closeboxes
+l7c64 pickinstrument
+l7c7b playmusic
+l7c93 pickmusic
+l7cac pickinstrument2
+l7cc0 freeblock
+l7cd0 toolate
+l7ce3 space
+l7ce5 nextlevel
+l7d10 getaward
+l7d28 getawarda
+l7d4a getawardb
+l7d6c selectmode
+l7d7b playmode
+l7d86 followmode
+l7d93 rememberwords
+l7dab retypewords2
+l7dc8 calculator
+l7dd3 selectprinter
+l7def printererror
+
+b7e03
+
+e7fff
